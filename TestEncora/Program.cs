@@ -6,7 +6,11 @@ namespace TestEncora
 {
     public class Program
     {
-
+        /// <summary>
+        /// This method sort strings from more caracteres to fewer caracteres  
+        /// </summary>
+        /// <param name="wordToFormatByQTY"></param>
+        /// <returns>string array with string format </returns>
         private static string[] sortByMoreCaracteres(string[] wordToFormatByQTY)
         {
             string[] newWordSorted = new string[wordToFormatByQTY.Length];
@@ -26,17 +30,18 @@ namespace TestEncora
                     while (NewWord.Length > 0)
                     {
                         var countLetter = NewWord.Split(NewWord[0]).Length - 1;
-                        string letters = NewWord.Substring(0, countLetter);
-                        listOrderMoreCaracteres.Add(new Tuple<int, int, string>(countLetter, System.Convert.ToInt32(NewWord[0]), letters));
+                        string letterSubstring = NewWord.Substring(0, countLetter);
+                        listOrderMoreCaracteres.Add(new Tuple<int, int, string>(countLetter, System.Convert.ToInt32(NewWord[0]), letterSubstring));
                         NewWord = NewWord.Replace(NewWord[0].ToString(), string.Empty);
                         positionList++;
                     }
                     var ListOrdened = listOrderMoreCaracteres.OrderByDescending(x => x.Item1).ToList();                  
 
-                    foreach (var x in ListOrdened)
+                    foreach (var mapResponse in ListOrdened)
                     {
-                        result += x.Item3;
+                        result += mapResponse.Item3;
                     }
+
                     newWordSorted[countWordsToSort] = result;
                     Console.WriteLine(result);
                     countWordsToSort++;
@@ -45,7 +50,11 @@ namespace TestEncora
             }            
             return newWordSorted;
         }
-        
+        /// <summary>
+        /// This method organize strings by alphabetical order.
+        /// </summary>
+        /// <param name="wordToFormat"></param>
+        /// <returns>String array with strigs alphabetical order.</returns>
         private static string[] sortAlphabetic(string[] wordToFormat)
         {
             string[] newWordSorted = new string[wordToFormat.Length];
@@ -68,7 +77,11 @@ namespace TestEncora
             return newWordSorted;
         }
 
-
+        /// <summary>
+        /// this method call the method sortAlphabetic and sortByMoreCaracteres
+        /// </summary>
+        /// <param name="wordToFormat"></param>
+        /// <returns>response with data order by alphavetical and size caracteres</returns>
         public static string[] sortingOperations(string[] wordToFormat)
         {
             if (wordToFormat != null && wordToFormat.Length > 0)
@@ -81,11 +94,25 @@ namespace TestEncora
             return wordToFormat;
 
         }
+        /// <summary>
+        /// this is Main method,this call sortingOperations
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
-            string[] wordsArray = new string[5];
-            wordsArray[0] = "abaccadcc";
-            wordsArray[1] = "xyzxy";
+            string[] wordsArray = new string[10];
+            wordsArray[0] = "dulgvgzwqg";
+            wordsArray[1] = "gxtjtmtywr";
+            wordsArray[2] = "hnlnxiupgt";
+            wordsArray[3] = "gzjotckivp";
+            wordsArray[4] = "dpwwsdptae";
+            wordsArray[5] = "pcscpilknb";
+            wordsArray[6] = "btvyhhmflf";
+            wordsArray[7] = "artrtnqxcr";
+            wordsArray[8] = "nrtcmcoadn";
+            wordsArray[9] = "fkdsgnekft";
+
+
             if (wordsArray != null && wordsArray.Length > 0)
             {
                 sortingOperations(wordsArray);
